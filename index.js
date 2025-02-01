@@ -323,4 +323,5 @@ function searchTable() {
 function clearButton () {
     document.getElementById("rsID").value = "";
     document.getElementById("rsID").readOnly = false;
+    document.getElementById("autocomplete-dropdown").innerHTML=""
 }
