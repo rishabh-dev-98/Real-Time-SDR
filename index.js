@@ -9,32 +9,48 @@ generateAccessToken();
 setInterval(generateAccessToken, 86364);
 
 function generateAccessToken() {
-    let data = Qs.stringify({
-        'grant_type': 'client_credentials',
-        'client_id': 'fcc5887ba77b40bab1a8bd630c59116d',
-        'client_secret': 'p8e-oMlLQqWv3hQ2IigGEJLQkqkKY2-HP9Ks',
-        'scope': 'AdobeID,openid,read_organizations,additional_info.job_function,additional_info.projectedProductContext,additional_info.roles' 
-    });
-
-    let options = {
-        method: 'post',
-        maxBodyLength: Infinity,
-        url: 'https://cors-anywhere.herokuapp.com/https://ims-na1.adobelogin.com/ims/token/v3',
-        headers: { 
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        data: data
-    };
-
-    axios.request(options)
-        .then((response) => {
-            accessToken = response.data.access_token;
-            fetchToken(accessToken);
-        })
-        .catch((error) => {
-            console.log("Error fetching token:", error);
+    (function() {
+        var cors_api_host = 'localhost:8080';
+        var cors_api_url = 'https://' + cors_api_host + '/';
+    
+        function addCorsProxy(url) {
+            var origin = window.location.protocol + '//' + window.location.host;
+            var targetOrigin = /^https?:\/\/([^\/]+)/i.exec(url);
+            if (targetOrigin && targetOrigin[0].toLowerCase() !== origin &&
+                targetOrigin[1] !== cors_api_host) {
+                return cors_api_url + url;
+            }
+            return url;
+        }
+    
+        let data = Qs.stringify({
+            'grant_type': 'client_credentials',
+            'client_id': 'fcc5887ba77b40bab1a8bd630c59116d',
+            'client_secret': 'p8e-oMlLQqWv3hQ2IigGEJLQkqkKY2-HP9Ks',
+            'scope': 'AdobeID,openid,read_organizations,additional_info.job_function,additional_info.projectedProductContext,additional_info.roles' 
         });
+    
+        let options = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: addCorsProxy('https://ims-na1.adobelogin.com/ims/token/v3'), // Automatically add CORS proxy
+            headers: { 
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            data: data
+        };
+    
+        axios.request(options)
+            .then((response) => {
+                accessToken = response.data.access_token;
+                fetchToken(accessToken);
+            })
+            .catch((error) => {
+                console.log("Error fetching token:", error);
+            });
+    
+    })();    
 }
 
 function fetchToken(token) {
