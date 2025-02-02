@@ -10,7 +10,7 @@ setInterval(generateAccessToken, 86364);
 
 function generateAccessToken() {
     (function() {
-        var cors_api_host = 'localhost:8080';
+        var cors_api_host = 'cors-anywhere.herokuapp.com';
         var cors_api_url = 'https://' + cors_api_host + '/';
     
         function addCorsProxy(url) {
@@ -50,7 +50,7 @@ function generateAccessToken() {
                 console.log("Error fetching token:", error);
             });
     
-    })();    
+    })();       
 }
 
 function fetchToken(token) {
