@@ -124,8 +124,10 @@ function fetchDataViews (token) {
 // Autocomplete functionality
 document.addEventListener("DOMContentLoaded", function () {
     console.log("access token inside dom content loaded ", accessToken)
-    let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
-    myModal.show();
+    if (document.cookie == "") {
+        let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+        myModal.show();
+    }
     const input = document.getElementById("rsID");
     const dropdown = document.getElementById("autocomplete-dropdown");
     const dvInput = document.getElementById("dvID");
