@@ -89,7 +89,7 @@ function fetchReportSuites(token) {
                 document.getElementById("atAlert").style.display = "none"; // Hide alert after 2 seconds
             }, 5000);
             let timeLeft = 5; // Start from 5 seconds
-            // let timerElement = document.getElementById("timer");
+            let timerElement = document.getElementById("timer");
             let countdown = setInterval(() => {
                 timeLeft--; // Decrease time
                 timerElement.textContent = timeLeft; // Update the timer display
@@ -128,7 +128,7 @@ function fetchDataViews (token) {
             document.getElementById("atAlert").style.display = "none"; // Hide alert after 2 seconds
         }, 5000);
         let timeLeft = 5; // Start from 5 seconds
-        // let timerElement = document.getElementById("timer");
+        let timerElement = document.getElementById("timer");
         let countdown = setInterval(() => {
             timeLeft--; // Decrease time
             timerElement.textContent = timeLeft; // Update the timer display
