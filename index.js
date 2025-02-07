@@ -83,12 +83,22 @@ function fetchReportSuites(token) {
             rsArr = response.data.content.map(item => item.rsid); // Update rsArr globally
         })
         .catch((error) => {
-            console.log("Error fetching report suites:", error);
             document.getElementById("optionSelect").disabled = true;
             document.getElementById("atAlert").style.display = "block"
             setTimeout(() => {
                 document.getElementById("atAlert").style.display = "none"; // Hide alert after 2 seconds
-            }, 10000);
+            }, 5000);
+            let timeLeft = 5; // Start from 5 seconds
+            // let timerElement = document.getElementById("timer");
+            let countdown = setInterval(() => {
+                timeLeft--; // Decrease time
+                timerElement.textContent = timeLeft; // Update the timer display
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown); // Stop the timer
+                    window.location.reload(); // Reload the page
+                }
+            }, 1000);
         });
 }
 
@@ -112,12 +122,22 @@ function fetchDataViews (token) {
         })); // Update dvArr globally
     })
     .catch((error) => {
-        console.log("Error fetching data views:", error);
         document.getElementById("optionSelect").disabled = true;
         document.getElementById("atAlert").style.display = "block"
         setTimeout(() => {
             document.getElementById("atAlert").style.display = "none"; // Hide alert after 2 seconds
-        }, 10000);
+        }, 5000);
+        let timeLeft = 5; // Start from 5 seconds
+        // let timerElement = document.getElementById("timer");
+        let countdown = setInterval(() => {
+            timeLeft--; // Decrease time
+            timerElement.textContent = timeLeft; // Update the timer display
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown); // Stop the timer
+                window.location.reload(); // Reload the page
+            }
+        }, 1000);
     });
 }
 
