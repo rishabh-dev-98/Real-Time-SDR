@@ -123,17 +123,9 @@ function fetchDataViews (token) {
 
 // Autocomplete functionality
 document.addEventListener("DOMContentLoaded", function () {
-    function getCookie(name) {
-        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        return match ? match[2] : null;
-    }
-    
-    let userToken = getCookie("token");
-    if (userToken == "") {
-        console.log("access token empty")
-        let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
-        myModal.show();
-    }
+    let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    myModal.show();
+        
     const input = document.getElementById("rsID");
     const dropdown = document.getElementById("autocomplete-dropdown");
     const dvInput = document.getElementById("dvID");
