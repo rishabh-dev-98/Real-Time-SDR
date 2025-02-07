@@ -700,7 +700,7 @@ function download () {
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet 1" });
 
         // Generate an Excel file and trigger the download
-        var fileName = rsId + "_SDR.xlsx"
+        var fileName = rsId + "_SDR.csv"
         XLSX.writeFile(wb, fileName);
 
     } else if (optionSelectedValue == "2") {
@@ -712,7 +712,7 @@ function download () {
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet 1" });
 
         // Generate an Excel file and trigger the download
-        var fileName = dvId + "_SDR.xlsx"
+        var fileName = dvId + "_SDR.csv"
         XLSX.writeFile(wb, fileName);
     }
 }
