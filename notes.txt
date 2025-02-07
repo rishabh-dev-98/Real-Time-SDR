@@ -8,7 +8,6 @@ function generateAccessToken() {
     // let data = Qs.stringify({
     //     'grant_type': 'client_credentials',
     //     'client_id': clientId,
-    //     'client_secret': clientSecret,
     //     'scope': 'AdobeID,openid,read_organizations,additional_info.job_function,additional_info.projectedProductContext,additional_info.roles' 
     // });
 
@@ -31,7 +30,6 @@ function generateAccessToken() {
     //     .catch((error) => {
     //         console.log("Error fetching token:", error);
     //     });   
-      
-    accessToken = "eyJhbGciOiJSUzI1NiIsIng1dSI6Imltc19uYTEta2V5LWF0LTEuY2VyIiwia2lkIjoiaW1zX25hMS1rZXktYXQtMSIsIml0dCI6ImF0In0.eyJpZCI6IjE3Mzg5MjY0MDM1MDVfOThmODdiMmYtYzE0ZC00ZTExLTg5NGEtYmRhNTQ3ZGQzZTU3X3VlMSIsIm9yZyI6IjBBQkE0NjczNTI3ODMxQzAwQTQ5MEQ0NUBBZG9iZU9yZyIsInR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJjbGllbnRfaWQiOiJmY2M1ODg3YmE3N2I0MGJhYjFhOGJkNjMwYzU5MTE2ZCIsInVzZXJfaWQiOiIxOUQwMUUxQjY3OTIzNkY3MEE0OTVDMEZAdGVjaGFjY3QuYWRvYmUuY29tIiwiYXMiOiJpbXMtbmExIiwiYWFfaWQiOiIxOUQwMUUxQjY3OTIzNkY3MEE0OTVDMEZAdGVjaGFjY3QuYWRvYmUuY29tIiwiY3RwIjozLCJtb2kiOiJlNWU4YTYzZSIsImV4cGlyZXNfaW4iOiI4NjQwMDAwMCIsImNyZWF0ZWRfYXQiOiIxNzM4OTI2NDAzNTA1Iiwic2NvcGUiOiJhZGRpdGlvbmFsX2luZm8uam9iX2Z1bmN0aW9uLG9wZW5pZCxBZG9iZUlELGFkZGl0aW9uYWxfaW5mby5yb2xlcyxyZWFkX29yZ2FuaXphdGlvbnMsYWRkaXRpb25hbF9pbmZvLnByb2plY3RlZFByb2R1Y3RDb250ZXh0In0.a9x0t7mdbsOIUsTmzmjuwhooJSvUlwR69mmyJQpn2ECrbANW3UTy9g0BHAuZVJuo7Mt0Lh1Cl6DLSIJpeHhnyKQWBt4_PAQCu_Edf8PzTMUVSGK5hAuwGjs4q_eNt5our-tj7tgjZS5VjnAlM_3qURnzT1BMllTtyn6XDebiZpKaGA7WU-_zQiswTbIZmIxzQ2FGcQUeywWuiaceZPY2ME6H2Mn3RKEjdKHpx7Fw6up_wPf_5Dml1_p6HXqSIxz9TR-5qzuBDLOadaQ6pJYuHyVnIvp-cDKnVTWdezCg2M_KJ-TxAsCQVBaG_cnhl2xorbTBrucjEfoDh81vCe60Sw"
-    fetchToken(accessToken)
+    //accessToken = ""
+    //fetchToken(accessToken)
 }

@@ -1,7 +1,6 @@
 console.log("Welcome to Real Time SDR");
 var accessToken = "";
 var clientId = "fcc5887ba77b40bab1a8bd630c59116d";
-var clientSecret = 'p8e-oMlLQqWv3hQ2IigGEJLQkqkKY2-HP9Ks';
 var orgId = '0ABA4673527831C00A490D45@AdobeOrg';
 var companyId = 'bskyb0';
 var rsArr = [];  // Declare rsArr globally
