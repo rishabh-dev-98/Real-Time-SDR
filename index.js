@@ -520,7 +520,6 @@ function Submit () {
                 document.getElementById("rsID").disabled = true;
                 document.getElementById("sdrAlert").style.display = "block";
                 document.getElementById("searchInput").style.display = "block"
-                document.getElementById("sdrNote").style.display = "block"
                 
                 setTimeout(() => {
                     document.getElementById("sdrAlert").style.display = "none"; // Hide alert after 2 seconds
@@ -626,7 +625,6 @@ function Submit () {
                     document.getElementById("dvID").disabled = true;
                     document.getElementById("sdrAlert").style.display = "block";
                     document.getElementById("searchInput").style.display = "block"
-                    document.getElementById("sdrNote").style.display = "block"
 
                     // Now fetch metrics
                     fetchMetrics()
@@ -730,7 +728,6 @@ function resetButton () {
     document.getElementById("rsFeedback").style.display = "none"
     document.getElementById("searchInput").style.display = "none"
     document.getElementById("searchInput").value = ""
-    document.getElementById("sdrNote").style.display = "none"
     document.getElementById("rsID").readOnly = false;
     document.getElementById("clearValue").style.display = "block"
     document.getElementById("rsContainer").style.display = "none"
@@ -805,7 +802,6 @@ function clearButton () {
     document.getElementById("dvID").value = "";
     document.getElementById("dvID").readOnly = false;
     document.getElementById("autocomplete-dropdown2").innerHTML = ""
-    document.getElementById("atID").value = "";
 }
 
 function scrollTable(amount) {
