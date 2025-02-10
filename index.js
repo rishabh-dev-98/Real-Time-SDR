@@ -287,6 +287,10 @@ function Submit () {
             schemaFieldPath.textContent = variable[i].schemaPath || "No Schema Path";
             schemaFieldPath.setAttribute("class", "font-monospace text-wrap");
 
+            const componentId = document.createElement('td');
+            componentId.textContent = variable[i].id.split("/")[1] || "No Component ID";
+            componentId.setAttribute("class", "font-monospace text-wrap");
+
             const datasetInfo = document.createElement('td');
             datasetInfo.textContent = (variable[i].dataSetType || "No Dataset Type") + " : " + (variable[i].dataSetIds || "No Dataset")
             datasetInfo.setAttribute("class", "font-monospace text-wrap");
@@ -326,16 +330,32 @@ function Submit () {
             function rules (arr) {
                 var result = ""
                 for (let i = 0; i < arr.length; ++i) {
-                    result += (arr[i].clause) + " | " + (arr[i].value == "" ? "No Value set" : arr[i].value);
+                    result += (arr[i].clause == "contains-all" ? "Contains all terms" : 
+                        arr[i].clause == "contains-any" ? "Contains any term" :
+                            arr[i].clause == "contains-phrase" ? "Contains the phrase" :
+                                arr[i].clause == "not-contains-any" ? "Does not contain any term" :
+                                    arr[i].clause == "not-contains-phrase" ? "Does not contain the phrase" :
+                                        arr[i].clause == "equals" ? "Equals" :
+                                            arr[i].clause == "not-equals" ? "Does not equal" :
+                                                arr[i].clause == "starts-with" ? "Starts with" :
+                                                    arr[i].clause == "ends-with" ? "Ends with" :
+                                                        arr[i].clause == "eq" ? "Equals" :
+                                                            arr[i].clause == "not-eq" ? "Does not equal" :
+                                                                arr[i].clause == "lt" ? "Is less than" :
+                                                                    arr[i].clause == "gt" ? "Is greater than" :
+                                                                        arr[i].clause == "ge" ? "Is greater than or equal to" :
+                                                                            arr[i].clause == "le" ? "Is less than or equal to" : "No Criteria Set"
+                                                                                
+                    ) + " | " + (arr[i].value == "" ? "No Value set" : arr[i].value) + " , ";
                 }
-                return result;
+                return result.slice(0,-2);
             }
             function caseSensitive (x) {
                 return x == true ? "Yes" : x == false ? "No" : x == undefined ? "Setting not available" : x;
             }
 
             const includeExcludeSettings = document.createElement('td');
-            includeExcludeSettings.textContent = (variable[i].includeExcludeSetting && variable[i].includeExcludeSetting.enabled) == true ? (caseSensitive(variable[i].includeExcludeSetting.caseSensitive) + " : " + rules(variable[i].includeExcludeSetting.rules)  ) :
+            includeExcludeSettings.textContent = (variable[i].includeExcludeSetting && variable[i].includeExcludeSetting.enabled) == true ? (caseSensitive(variable[i].includeExcludeSetting.caseSensitive) + " : " + (variable[i].includeExcludeSetting.match == "and" ? "If all criteria are met" : "If any criteria are met") + " | " + rules(variable[i].includeExcludeSetting.rules)  ) :
                 (variable[i].includeExcludeSetting && variable[i].includeExcludeSetting.enabled) == false ? "No" :
                     (variable[i].includeExcludeSetting && variable[i].includeExcludeSetting.enabled) == undefined ? "Setting not available" : variable[i].includeExcludeSetting.enabled;
             includeExcludeSettings.setAttribute("class", "font-monospace text-wrap");
@@ -446,6 +466,7 @@ function Submit () {
             newRow.appendChild(description);
             newRow.appendChild(schemaFieldDataType);
             newRow.appendChild(schemaFieldPath);
+            newRow.appendChild(componentId);
             newRow.appendChild(datasetInfo);
             newRow.appendChild(hideComponentFromReporting);
             newRow.appendChild(adobeLookups);
