@@ -6,21 +6,21 @@ var companyId = 'bskyb0';
 var rsArr = [];  // Declare rsArr globally
 var dvArr = []; // Declare dvArr globally
 
-function getCookie(name) {
-    let cookies = document.cookie.split("; ");
-    for (let cookie of cookies) {
-        let [key, value] = cookie.split("=");
-        if (key === name) {
-            return value;
-        }
-    }
-    return 'no cookie present'; // Return null if cookie not found
-}
+// function getCookie(name) {
+//     let cookies = document.cookie.split("; ");
+//     for (let cookie of cookies) {
+//         let [key, value] = cookie.split("=");
+//         if (key === name) {
+//             return value;
+//         }
+//     }
+//     return 'no cookie present'; // Return null if cookie not found
+// }
 
-if (getCookie("token") != 'no cookie present') {
-    accessToken = getCookie("token")
-    fetchToken(accessToken)
-}
+// if (getCookie("token") != 'no cookie present') {
+//     accessToken = getCookie("token")
+//     fetchToken(accessToken)
+// }
 
 function optionSelected () {
     var optionSelectedValue = document.getElementById("optionSelect").value;
@@ -74,7 +74,7 @@ function submitToken() {
       let myModal = bootstrap.Modal.getInstance(document.getElementById("exampleModal"));
         myModal.hide();
         document.cookie = "token=" + accessToken + "; Secure; SameSite=Strict";
-        accessToken = getCookie("token")
+        //accessToken = getCookie("token")
         fetchToken(accessToken)
     }
 }
@@ -117,7 +117,7 @@ function fetchReportSuites(token) {
                 }
             }, 1000);
             // DELETING THE TOKEN COOKIE
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            //document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         });
 }
 
@@ -158,16 +158,18 @@ function fetchDataViews (token) {
             }
         }, 1000);
         // DELETING THE TOKEN COOKIE
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     });
 }
 
 // Autocomplete functionality
 document.addEventListener("DOMContentLoaded", function () {
-    if (document.cookie == '') {
-        let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
-        myModal.show();
-    }
+    // if (document.cookie == '') {
+    //     let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    //     myModal.show();
+    // }
+    let myModal = new bootstrap.Modal(document.getElementById("exampleModal"));
+    myModal.show();
         
     const input = document.getElementById("rsID");
     const dropdown = document.getElementById("autocomplete-dropdown");
