@@ -329,7 +329,7 @@ function Submit () {
             adobeLookups.setAttribute("class", "font-monospace text-wrap");
 
             const substringSettings = document.createElement('td');
-            substringSettings.textContent = (variable[i].substringSetting && variable[i].substringSetting.enabled) === true ? (variable[i].substringSetting.method)  : (variable[i].substringSetting && variable[i].substringSetting.enabled) === false ? "No" : (variable[i].substringSetting && variable[i].substringSetting.enabled) == undefined ? "Setting not available" : variable[i].substringSetting.enabled;
+            substringSettings.textContent = (variable[i].fieldDefinition && variable[i].fieldDefinition.length > 1) ? (variable[i].fieldDefinition[1].func === "split" ? "Delimeter" : variable[i].fieldDefinition[1].func === "url-parse" ? "URL Parse" : variable[i].fieldDefinition[1].func === "trim-trunc-trim" ? "Trim" : variable[i].fieldDefinition[1].func === "regex-replace" ? "Regex" : "Other") : "Setting not available";
             substringSettings.setAttribute("class", "font-monospace text-wrap");
 
             const behaviorSettings = document.createElement('td');
@@ -727,7 +727,7 @@ function Submit () {
                 });
             }
         }
-    } 
+    }
 }
 
 function download () {
