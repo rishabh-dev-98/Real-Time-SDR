@@ -5,6 +5,7 @@ var orgId = '0ABA4673527831C00A490D45@AdobeOrg';
 var companyId = 'bskyb0';
 var rsArr = [];  // Declare rsArr globally
 var dvArr = []; // Declare dvArr globally
+var details = []
 
 // function getCookie(name) {
 //     let cookies = document.cookie.split("; ");
@@ -241,6 +242,7 @@ function Submit () {
         event.preventDefault(); // Prevent form submission (page reload)
     });
     var optionSelectedValue = optionSelected();
+    document.getElementById("optionSelect").disabled = true;
     function createTable (variable, type) {
         for (let i = 0; i < variable.length; ++i) {
             const newRow = document.createElement('tr');
@@ -508,6 +510,7 @@ function Submit () {
             document.getElementById('tableBody2').appendChild(newRow);
         }
     }
+    
     // ADOBE ANALYTICS OPTION SELECTED
     if (optionSelectedValue == "1") {
         var rsId = document.getElementById("rsID").value;
@@ -548,6 +551,9 @@ function Submit () {
                         listVars.push({ id: rs[i].id, title: rs[i].title, description: rs[i].description || "No Description", number: (rs[i].id).split("/")[1] });
                     }
                 }
+
+                details.push(evars.length, props.length, listVars.length)
+                fetchAllDetails(details)
     
                 // Sort each array
                 evars.sort(sortByNumericId);
@@ -557,9 +563,11 @@ function Submit () {
                 createTable(evars, "eVars");
                 createTable(props, "props");
                 createTable(listVars, "listVars");
+
                 // Now fetch events
                 fetchEvents();
 
+                document.getElementById("allDetails").style.display = "block";
                 document.getElementById("myTable").style.display = "block"
                 document.getElementById("exportReset").style.display = "block"
                 document.getElementById("submitButton").style.display = "none"
@@ -610,11 +618,13 @@ function Submit () {
                                 events.push({ id: rs[i].id, title: rs[i].title, description: rs[i].description || "No Description", number: rs[i].extraTitleInfo });
                             }
                         }
-                
+                        details.push(events.length)
+                        fetchAllDetails(details)
+
                         // Sort the IDs based on the numeric part of the value
                         events.sort(sortByNumericId);
                         createTable(events, "events")
-                        
+
                         setTimeout(() => {
                             document.getElementById("sdrAlert").style.display = "none"; // Hide alert after 2 seconds
                         }, 2000);
@@ -664,7 +674,10 @@ function Submit () {
                 .then((response) => {
                     var dimensions = response.data.content;
                     createTable2(dimensions, "dimension")
-                    
+                    details.push(dimensions.length)
+                    fetchAllDetails(details)
+
+                    document.getElementById("allDetails").style.display = "block";
                     document.getElementById("myTable2").style.display = "block"
                     document.getElementById("exportReset").style.display = "block"
                     document.getElementById("submitButton").style.display = "none"
@@ -713,6 +726,8 @@ function Submit () {
                     .then((response) => {
                         var metrics = response.data.content
                         createTable2(metrics, "metric")
+                        details.push(metrics.length)
+                        fetchAllDetails(details)
                         setTimeout(() => {
                             document.getElementById("sdrAlert").style.display = "none"; // Hide alert after 2 seconds
                         }, 2000);
@@ -744,7 +759,7 @@ function download () {
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet 1" });
 
         // Generate an Excel file and trigger the download
-        var fileName = rsId + "_SDR.csv"
+        var fileName = rsId + "_SDR.xlsx"
         XLSX.writeFile(wb, fileName);
 
     } else if (optionSelectedValue == "2") {
@@ -756,7 +771,7 @@ function download () {
         const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet 1" });
 
         // Generate an Excel file and trigger the download
-        var fileName = dvId + "_SDR.csv"
+        var fileName = dvId + "_SDR.xlsx"
         XLSX.writeFile(wb, fileName);
     }
 }
@@ -789,6 +804,9 @@ function resetButton () {
     document.getElementById("clearValue2").style.display = "block"
     document.getElementById("scrollerLeft").style.display = "none"
     document.getElementById("scrollerRight").style.display = "none"
+    document.getElementById("allDetails").style.display = "none";
+    document.getElementById('allDetails').innerHTML = ''
+    details = [];
 }
 
 function rsInputFocus () {
@@ -852,4 +870,14 @@ function clearButton () {
 
 function scrollTable(amount) {
     document.getElementById("tableContainer2").scrollBy({ left: amount, behavior: "smooth" });
+}
+
+function fetchAllDetails (arr,) {
+    if (arr.length == 4) {
+        document.getElementById("allDetails").innerHTML =
+            `<p><strong>High Level Overview : </strong><em>There are <strong>${arr[0]} eVars</strong>, <strong>${arr[1]} props</strong>, <strong>${arr[2]} listVars</strong> and <strong>${arr[3]} events</strong> present in the selected report suite. (Total = <strong>${arr[0]+arr[1]+arr[2]+arr[3]} variables</strong>)</em>`;
+    } else if (arr.length == 2) {
+        document.getElementById("allDetails").innerHTML =
+            `<p><strong>High Level Overview : </strong><em>There are <strong>${arr[0]} dimensions</strong> and <strong>${arr[1]} metrics</strong> present in the selected data view. (Total = <strong>${arr[0]+arr[1]} variables</strong>)</em>`;
+    }
 }
