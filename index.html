@@ -52,6 +52,12 @@
     </div>
     
     <div class="container my-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb fst-italic">
+            <li class="breadcrumb-item"><a href="https://rishabh-dev-98.github.io/Multi-Solution-Debugger/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><strong>SDR</strong></li>
+          </ol>
+        </nav>
         <div class="alert alert-danger alert-dismissible fade show" role="alert" id="rsAlert" style="display: none;">
           <i class="bi bi-exclamation-circle"></i><strong class="ms-2">Oops!</strong> No Report Suite found. Please check the ID and resubmit again.
         </div>
@@ -64,6 +70,7 @@
         <div class="alert alert-danger alert-dismissible fade show" role="alert" id="atAlert" style="display: none;">
           <i class="bi bi-exclamation-circle"></i><strong class="ms-2">Oops!</strong> Incorrect expired access token submitted. Reloading the page in <i class="bi bi-stopwatch"></i> <span id="timer">5</span> seconds and resubmit the latest value from the teams channel.
         </div>
+
       <form id="myForm" class="needs-validation" novalidate>
         <!-- DROPDOWN OPTION TO SELECT ACTION TO PERFORM -->
         <div class="row mb-3">
